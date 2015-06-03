@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>How Jenkins Can Work for the Whole Team</title>
+
+		<meta name="description" content="The what, why, and how of working with Jenkins on a team.">
+		<meta name="author" content="Tommy Keswick / The Cherry Hill Company">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+		<link rel="stylesheet" href="lib/font/frutiger/frutiger.css">
+		<link rel="stylesheet" href="cherryhill.css">
+		<link rel="stylesheet" href="custom.css">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<!-- This `img` will appear on every slide. See `cherryhill.css` for positiong and sizing styles. -->
+				<img src="images/logos/cherryhill_logo.svg" id="logo">
+
+				<section data-state="first drupalcon-bg" data-background="images/logos/DrupalCon-LA_Logo_PMS-NoBox_20141204.png" data-background-size="auto 90%" data-markdown>
+					<script type="text/template">
+						# How Jenkins Can Work for the Whole Team
+						### DrupalCon Los Angeles 2015
+
+						Presented by [Tommy Keswick](https://chillco.com/about/tommy-keswick) / [@TommyKeswick](https://twitter.com/TommyKeswick)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						# Agenda
+
+						- What is Jenkins?
+						- Why Use Jenkins?
+						- Jenkins Project Configuration
+						- Running Builds
+						- Extending Jenkins
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						# Agenda
+						### What We Will *Not* Cover
+
+						- Installing Jenkins
+						- Scripting Builds & Deployments
+						- Writing Tests
+					</script>
+				</section>
+
+				<section>
+					<!-- begin nested slides -->
+					<section>
+						<div data-markdown>
+							<script type="text/template">
+								# About Me
+							</script>
+						</div>
+						<div class="left" data-markdown>
+							<script type="text/template">
+							- Drupal Developer & Trainer  
+							  at The Cherry Hill Company
+							- Background in libraries
+							- Organizer in the LA Drupal community  
+							![Drupal Association Individual Member](images/logos/Association_Individual_Member_Badge.svg)
+							</script>
+						</div>
+						<div class="right" data-markdown>
+							<script type="text/template">
+							![photo of Tommy Keswick](images/tommy.jpg)  
+							drupal.org: [TommyK](https://www.drupal.org/user/382217)  
+							[@TommyKeswick](https://twitter.com/TommyKeswick)
+							</script>
+						</div>
+					</section>
+
+					<section data-state="image-bg" data-background="images/logos/cherryhill_bg.svg" data-background-size="contain" data-markdown>
+						<script type="text/template">
+							# The Cherry Hill Company
+
+							We have been working with Drupal since 2005.
+
+							We specialize in open-source tools to build, host, and support websites and repositories for libraries.
+
+							[@thecherryhillco](https://twitter.com/thecherryhillco)  
+							http://chillco.com/  
+							![Drupal Association Supporting Parter](images/logos/Association_Supporting_Partner_Badge.svg)
+						</script>
+					</section>
+					<!-- end nested slides -->
+				</section>
+
+				<section data-state="image-bg" data-background="images/logos/jenkins_logo.svg" data-background-size="contain" data-markdown>
+					<script type="text/template">
+						# What is Jenkins?
+
+						- Continuous Integration Server <!-- .element: class="fragment" -->
+						- A sort of triggering mechanism <!-- .element: class="fragment" -->
+						- Interface for managing projects <!-- .element: class="fragment" -->
+						- Message aggregator <!-- .element: class="fragment" -->
+					</script>
+				</section>
+
+				<section data-state="image-bg" data-background="images/logos/jenkins_logo.svg" data-background-size="contain" data-markdown>
+					<script type="text/template">
+						# Why Use Jenkins?
+
+						- Empowers team members <!-- .element: class="fragment" -->
+						- Reduces manual processes & workload <!-- .element: class="fragment" -->
+						- Broken builds are less cause for alarm <!-- .element: class="fragment" -->
+						- Non-build tasks can be scripted (and automated) <!-- .element: class="fragment" -->
+					</script>
+				</section>
+
+				<section>
+					<!-- begin nested slides -->
+					<section data-markdown>
+						<script type="text/template">
+							# Project Configuration Interface
+
+							A look at configuring a project in Jenkins
+						</script>
+					</section>
+					<section data-background="images/screenshots/jenkins-home.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-list.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-menu.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-project.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-1.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-2.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-3.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-4.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-5.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-6.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-7.png" data-background-size="contain">
+					</section>
+					<section data-background="images/screenshots/jenkins-config-8.png" data-background-size="contain">
+					</section>
+					<!-- end nested slides -->
+				</section>
+
+				<section>
+					<!-- begin nested slides -->
+					<section data-markdown>
+						<script type="text/template">
+							# Running Builds
+
+							Demo of everything going smoothly
+						</script>
+					</section>
+					<section data-state="vimeo no-logo">
+						<iframe src="https://player.vimeo.com/video/129687265" width="960" height="700" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Running Builds
+
+							Demo of broken builds and debugging
+						</script>
+					</section>
+					<section data-state="vimeo no-logo">
+						<iframe src="https://player.vimeo.com/video/129687266" width="960" height="700" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</section>
+					<!-- end nested slides -->
+				</section>
+
+				<section>
+					<!-- begin nested slides -->
+					<section data-markdown>
+						<script type="text/template">
+							# Extending Jenkins
+
+							- There are hundreds of plugins available <!-- .element: class="fragment" -->
+							- Plugins can be installed within the UI <!-- .element: class="fragment" -->
+							- Demo of installing a plugin <!-- .element: class="fragment" -->
+						</script>
+					</section>
+					<section data-state="vimeo no-logo">
+						<iframe src="https://player.vimeo.com/video/129687268" width="960" height="700" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Extending Jenkins
+							### Notable Plugins
+
+							- Slack <!-- .element: class="fragment" -->
+							- Git <!-- .element: class="fragment" -->
+							- Delivery Pipeline <!-- .element: class="fragment" -->
+						</script>
+					</section>
+					<section data-background="images/screenshots/jenkins-delivery-pipeline.png" data-background-size="contain">
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Extending Jenkins
+							### Notable Plugins
+
+							- Slack
+							- Git
+							- Delivery Pipeline
+							- LDAP <!-- .element: class="fragment" -->
+							- Email-ext <!-- .element: class="fragment" -->
+							- Nested View <!-- .element: class="fragment" -->
+							- Log Parser <!-- .element: class="fragment" -->
+							- Strawboss <!-- .element: class="fragment" -->
+						</script>
+					</section>
+					<!-- end nested slides -->
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						# Takeaways
+
+						- SysAdmins: Empower your team members! <!-- .element: class="fragment" -->
+						- Developers: Reduce disruptions for sysadmins <!-- .element: class="fragment" -->
+						- Everyone: Automate and manage repetitive tasks <!-- .element: class="fragment" -->
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						# Questions
+						# ?
+					</script>
+				</section>
+
+				<section data-state="image-bg" data-background="images/logos/cherryhill_bg.svg" data-background-size="contain" data-markdown>
+					<script type="text/template">
+						# Thank You
+
+						## Tommy Keswick  
+						_The Cherry Hill Company_  
+						tkeswick@chillco.com  
+						drupal.org: [TommyK](https://www.drupal.org/user/382217)  
+						[@TommyKeswick](https://twitter.com/TommyKeswick)  
+						[@thecherryhillco](https://twitter.com/thecherryhillco)  
+					</script>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
